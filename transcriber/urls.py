@@ -23,4 +23,6 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     # path('transcriber/', include(transcriber_urls)),
     # path('notes/', include(transcriber_urls)),
+    # path ('', include(transcriber_api.urls)),
+    path('', include(transcriber_urls)),
 ]
