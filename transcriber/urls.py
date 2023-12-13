@@ -20,9 +20,10 @@ from transcriber_api import urls as transcriber_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(transcriber_urls)),
+    # Login/logout for browable APIs:
     path('api-auth/', include('rest_framework.urls')),
     # path('transcriber/', include(transcriber_urls)),
     # path('notes/', include(transcriber_urls)),
     # path ('', include(transcriber_api.urls)),
-    path('', include(transcriber_urls)),
 ]
