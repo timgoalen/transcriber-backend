@@ -9,7 +9,7 @@ from .models import Note
 class NoteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Note
-        fields = ["note", "timestamp", "created_on", "updated_on"]
+        fields = ["id", "text", "folder_id", "created_on", "updated_on"]
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
