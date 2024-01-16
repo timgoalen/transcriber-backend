@@ -33,12 +33,14 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # tg added:
-CORS_ALLOWED_ORIGINS = [
+# CORS_ALLOWED_ORIGINS = [
     # "http://localhost:8000", 
     # "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/",
-    "*",
+    # "*",
     # 'https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/'
-]
+# ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 # tg added:
 CSRF_TRUSTED_ORIGINS = ['https://8000-timgoalen-transcriberba-307jf9ke75i.ws-eu106.gitpod.io',
@@ -58,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'transcriber_api',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'transcriber.urls'
