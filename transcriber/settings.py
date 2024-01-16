@@ -34,11 +34,17 @@ ALLOWED_HOSTS = ['*']
 
 # tg added:
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000", 
+    # "http://localhost:8000", 
+    # "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/",
+    "*",
+    # 'https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/'
 ]
 
 # tg added:
-CSRF_TRUSTED_ORIGINS = ['https://8000-timgoalen-transcriberba-307jf9ke75i.ws-eu106.gitpod.io']  
+CSRF_TRUSTED_ORIGINS = ['https://8000-timgoalen-transcriberba-307jf9ke75i.ws-eu106.gitpod.io',
+'https://8000-timgoalen-transcriberba-5uy4uhx3wov.ws-eu107.gitpod.io',
+'https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io',
+'https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/']  
 
 
 # Application definition

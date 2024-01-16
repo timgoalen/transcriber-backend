@@ -8,8 +8,8 @@ from .models import Note
 from .serializers import NoteSerializer, UserSerializer
 
 
-def home_page_view(request):
-    return HttpResponse("<h1>transcriber backend</h1>")
+# def home_page_view(request):
+    # return HttpResponse("<h1>transcriber backend</h1>")
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -19,7 +19,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     queryset = User.objects.all().order_by("-date_joined")
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
 
 class NotesViewSet(viewsets.ModelViewSet):
@@ -29,29 +29,30 @@ class NotesViewSet(viewsets.ModelViewSet):
 
     queryset = Note.objects.all().order_by("-created_on")
     serializer_class = NoteSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-
-class NotesListApiView(APIView):
-    # add permission to check if user is authenticated
+    permission_classes = [permissions.AllowAny] 
     # permission_classes = [permissions.IsAuthenticated]
 
-    # -- LIST
-    def get(self, request, *args, **kwargs):
-        notes = Note.objects.all()
-        serializer = NoteSerializer(notes, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
 
-    #  -- CREATE
-    def post(self, request, *args, **kwargs):
-        data = {
-            "note": request.data.get("note"),
-            "timestamp": request.data.get("timestamp"),
-            # 'user': request.user.id
-        }
-        serializer = NoteSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+# class NotesListApiView(APIView):
+#     # add permission to check if user is authenticated
+#     # permission_classes = [permissions.IsAuthenticated]
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     # -- LIST
+#     def get(self, request, *args, **kwargs):
+#         notes = Note.objects.all()
+#         serializer = NoteSerializer(notes, many=True)
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+
+#     #  -- CREATE
+#     def post(self, request, *args, **kwargs):
+#         data = {
+#             "note": request.data.get("note"),
+#             "timestamp": request.data.get("timestamp"),
+#             # 'user': request.user.id
+#         }
+#         serializer = NoteSerializer(data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
