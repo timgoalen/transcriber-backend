@@ -4,8 +4,8 @@ from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions, viewsets
-from .models import Note
-from .serializers import NoteSerializer, UserSerializer
+from .models import Note, Folder
+from .serializers import NoteSerializer, FolderSerializer, UserSerializer
 
 
 # def home_page_view(request):
@@ -33,26 +33,13 @@ class NotesViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAuthenticated]
 
 
-# class NotesListApiView(APIView):
-#     # add permission to check if user is authenticated
-#     # permission_classes = [permissions.IsAuthenticated]
+class FoldersViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows folders to be viewed or edited.
+    """
 
-#     # -- LIST
-#     def get(self, request, *args, **kwargs):
-#         notes = Note.objects.all()
-#         serializer = NoteSerializer(notes, many=True)
-#         return Response(serializer.data, status=status.HTTP_200_OK)
+    queryset = Folder.objects.all().order_by("-created_on")
+    serializer_class = FolderSerializer
+    permission_classes = [permissions.AllowAny] 
+    # permission_classes = [permissions.IsAuthenticated]
 
-#     #  -- CREATE
-#     def post(self, request, *args, **kwargs):
-#         data = {
-#             "note": request.data.get("note"),
-#             "timestamp": request.data.get("timestamp"),
-#             # 'user': request.user.id
-#         }
-#         serializer = NoteSerializer(data=data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

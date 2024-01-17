@@ -8,12 +8,14 @@ from .views import (
     # home_page_view,
     UserViewSet,
     NotesViewSet,
+    FoldersViewSet,
 )
 
 
 router = routers.DefaultRouter()
 router.register(r"users", UserViewSet)
 router.register(r"notes", NotesViewSet)
+router.register(r"folders", FoldersViewSet)
 # router.register(r"groups", views.GroupViewSet)
 
 
