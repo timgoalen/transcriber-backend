@@ -19,12 +19,9 @@ from django.urls import path, include
 from transcriber_api import urls as transcriber_api_urls
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', include(transcriber_api_urls)),
+    path('api/auth/', include('authentication.urls')),
+    path('admin/', admin.site.urls),
     # Login/logout for browable APIs:
     # path('api-auth/', include('rest_framework.urls')),
-
-    # path('transcriber/', include(transcriber_urls)),
-    # path('notes/', include(transcriber_urls)),
-    # path ('', include(transcriber_api.urls)),
 ]
