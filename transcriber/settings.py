@@ -66,12 +66,14 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
     "authentication.apps.AuthenticationConfig",
     "transcriber_api",
     "corsheaders",
 ]
 
-# all-auth depends on Django's 'sites' framework:
+# django-allauth depends on Django's 'sites' framework:
 SITE_ID = 1
 
 MIDDLEWARE = [
