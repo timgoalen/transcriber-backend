@@ -7,11 +7,26 @@ from rest_framework import status, permissions, viewsets
 from .models import Note, Folder
 from .serializers import NoteSerializer, FolderSerializer, UserSerializer
 
-# DO I NEED THIS EXTRA PERMISSIONS OR IS THE FILTERING ENOUGH
+
+# from: https://testdriven.io/blog/drf-permissions/
+# class OwnerOrReadOnly(permissions.BasePermission):
+#     def has_permission(self, request, view):
+#         if (
+#             request.method in ["GET", "HEAD", "OPTIONS"]
+#             and request.user.is_authenticated
+#         ):
+#             return True
+#         return False
+
+#     def has_object_permission(self, request, view, obj):
+#         if request.method in permissions.SAFE_METHODS:
+#             return True
+
+#         # Allow DELETE or PATCH requests only if the logged in user is the object.user.
+#         return obj.user == request.user
+
 
 class OwnerOrReadOnly(permissions.BasePermission):
-    # from: https://testdriven.io/blog/drf-permissions/
-
     def has_permission(self, request, view):
         if request.user.is_authenticated:
             return True
@@ -31,6 +46,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [OwnerOrReadOnly]
 
     def get_queryset(self):
         logged_in_user = self.request.user
@@ -43,14 +59,14 @@ class NotesViewSet(viewsets.ModelViewSet):
     """
 
     serializer_class = NoteSerializer
-    # permission_classes = [OwnerOrReadOnly]
+    permission_classes = [OwnerOrReadOnly]
     # permission_classes = [permissions.AllowAny]
     # permission_classes = [permissions.IsAuthenticated]
     queryset = Note.objects.all()
 
     def get_queryset(self):
         logged_in_user = self.request.user
-        return Note.objects.filter(user=logged_in_user).order_by("-created_on")
+        return Note.objects.filter(user=logged_in_user.id).order_by("-created_on")
 
 
 class FoldersViewSet(viewsets.ModelViewSet):
@@ -59,11 +75,11 @@ class FoldersViewSet(viewsets.ModelViewSet):
     """
 
     serializer_class = FolderSerializer
-    # permission_classes = [OwnerOrReadOnly]
+    permission_classes = [OwnerOrReadOnly]
     # permission_classes = [permissions.AllowAny]
     # permission_classes = [permissions.IsAuthenticated]
     queryset = Folder.objects.all()
 
     def get_queryset(self):
         logged_in_user = self.request.user
-        return Folder.objects.filter(user=logged_in_user).order_by("-created_on")
+        return Folder.objects.filter(user=logged_in_user.id).order_by("-created_on")
