@@ -19,7 +19,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     queryset = User.objects.all().order_by("-date_joined")
     serializer_class = UserSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class NotesViewSet(viewsets.ModelViewSet):
@@ -29,8 +29,7 @@ class NotesViewSet(viewsets.ModelViewSet):
 
     queryset = Note.objects.all().order_by("-created_on")
     serializer_class = NoteSerializer
-    permission_classes = [permissions.AllowAny] 
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class FoldersViewSet(viewsets.ModelViewSet):
@@ -40,6 +39,5 @@ class FoldersViewSet(viewsets.ModelViewSet):
 
     queryset = Folder.objects.all().order_by("-created_on")
     serializer_class = FolderSerializer
-    permission_classes = [permissions.AllowAny] 
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
