@@ -23,5 +23,6 @@ urlpatterns = [
     path('api/auth/', include('authentication.urls')),
     path('admin/', admin.site.urls),
     # Login/logout for browable APIs:
-    # path('api-auth/', include('rest_framework.urls')),
+    # TODO: CHECK THIS...
+    path('api-auth/', include('rest_framework.urls')),
 ]
