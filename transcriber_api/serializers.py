@@ -29,5 +29,4 @@ class FolderSerializer(serializers.HyperlinkedModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ["url"]
-        # fields = ["id", "url", "username", "email"]
+        fields = ["username"]

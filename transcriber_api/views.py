@@ -45,12 +45,13 @@ class UserViewSet(viewsets.ModelViewSet):
 
     serializer_class = UserSerializer
     queryset = User.objects.all()
+    # permission_classes = [permissions.AllowAny]
     # permission_classes = [permissions.IsAuthenticated]
     permission_classes = [OwnerOrReadOnly]
 
     def get_queryset(self):
         logged_in_user = self.request.user
-        return User.objects.filter(id=logged_in_user.id).order_by("-date_joined")
+        return User.objects.filter(id=logged_in_user.id)
 
 
 class NotesViewSet(viewsets.ModelViewSet):
