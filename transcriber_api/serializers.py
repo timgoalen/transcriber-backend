@@ -7,18 +7,26 @@ from .models import Note, Folder
 
 
 class NoteSerializer(serializers.HyperlinkedModelSerializer):
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault(), write_only=True
+    )
+
     class Meta:
         model = Note
-        fields = ["id", "text", "folder_id", "created_on", "updated_on"]
+        fields = ["id", "user", "text", "folder_id", "created_on", "updated_on"]
 
 
 class FolderSerializer(serializers.HyperlinkedModelSerializer):
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault(), write_only=True
+    )
+
     class Meta:
         model = Folder
-        fields = ["id", "title", "colour", "created_on", "updated_on"]
+        fields = ["id", "user", "title", "colour", "created_on", "updated_on"]
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ["url", "username", "email", "groups"]
+        fields = ["username"]

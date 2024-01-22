@@ -23,6 +23,7 @@ router.register(r"folders", FoldersViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path("", include(router.urls)),
+    # TODO: this is also in the main urls.py file, choose where needed (maybe add `namespace="rest_framework"` to other)
     # path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
 ]
 
