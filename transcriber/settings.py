@@ -80,23 +80,19 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
-# tg added:
-# CORS_ALLOWED_ORIGINS = [
-# "http://localhost:8000",
-# "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/",
-# "*",
-# 'https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/',
-# "https://transcriber-frontend.vercel.app/",
-# ]
+CORS_ALLOWED_ORIGINS = [
+"https://transcriber-frontend.vercel.app",
+"https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io",
+]
 
-if 'CLIENT_ORIGIN' in os.environ:
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
-    ]
-else:
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://.*\.gitpod\.io$",
-    ]
+# if 'CLIENT_ORIGIN' in os.environ:
+#     CORS_ALLOWED_ORIGINS = [
+#         os.environ.get('CLIENT_ORIGIN')
+#     ]
+# else:
+#     CORS_ALLOWED_ORIGIN_REGEXES = [
+#         r"^https://.*\.gitpod\.io$",
+#     ]
 
 # Allow cookies
 CORS_ALLOW_CREDENTIALS = True
