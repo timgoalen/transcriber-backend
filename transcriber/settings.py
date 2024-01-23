@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 if os.path.isfile("env.py"):
     import env
@@ -28,19 +29,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ["*"]
-
-# tg added:
-# CORS_ALLOWED_ORIGINS = [
-# "http://localhost:8000",
-# "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/",
-# "*",
-# 'https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/'
-# ]
-
-CORS_ALLOW_ALL_ORIGINS = True
+ALLOWED_HOSTS = ["*", "https://transcriber-frontend.vercel.app/"]
 
 # tg added:
 CSRF_TRUSTED_ORIGINS = [
@@ -48,6 +39,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://8000-timgoalen-transcriberba-5uy4uhx3wov.ws-eu107.gitpod.io",
     "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io",
     "https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/",
+    "https://transcriber-frontend.vercel.app/",
 ]
 
 
@@ -68,15 +60,16 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "dj_rest_auth",
     "dj_rest_auth.registration",
+    "corsheaders",
     "authentication.apps.AuthenticationConfig",
     "transcriber_api",
-    "corsheaders",
 ]
 
 # django-allauth depends on Django's 'sites' framework:
 SITE_ID = 1
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -85,8 +78,30 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
 ]
+
+# tg added:
+# CORS_ALLOWED_ORIGINS = [
+# "http://localhost:8000",
+# "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/",
+# "*",
+# 'https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/',
+# "https://transcriber-frontend.vercel.app/",
+# ]
+
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN')
+    ]
+else:
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        r"^https://.*\.gitpod\.io$",
+    ]
+
+# Allow cookies
+CORS_ALLOW_CREDENTIALS = True
+
+# CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = "transcriber.urls"
 
@@ -125,11 +140,20 @@ REST_FRAMEWORK = {
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    'default': ({
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    } if 'DEV' in os.environ else dj_database_url.parse(
+        os.environ.get('DATABASE_URL')
+    ))
 }
 
 
