@@ -31,7 +31,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ["*", "https://transcriber-frontend.vercel.app/"]
+ALLOWED_HOSTS = ["*", "https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io/",
+"https://transcriber-frontend.vercel.app/"]
 
 # tg added:
 CSRF_TRUSTED_ORIGINS = [
@@ -80,10 +81,10 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
-CORS_ALLOWED_ORIGINS = [
-"https://transcriber-frontend.vercel.app",
-"https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io",
-]
+# CORS_ALLOWED_ORIGINS = [
+# "https://transcriber-frontend.vercel.app",
+# "https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io",
+# ]
 
 # if 'CLIENT_ORIGIN' in os.environ:
 #     CORS_ALLOWED_ORIGINS = [
@@ -97,7 +98,7 @@ CORS_ALLOWED_ORIGINS = [
 # Allow cookies
 CORS_ALLOW_CREDENTIALS = True
 
-# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = "transcriber.urls"
 
