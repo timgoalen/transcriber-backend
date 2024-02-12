@@ -22,7 +22,7 @@ class NotesViewSet(viewsets.ModelViewSet):
     """
 
     serializer_class = NoteSerializer
-    # permission_classes = [OwnerOrReadOnly]
+    permission_classes = [OwnerOrReadOnly]
     queryset = Note.objects.all()
 
     # Return only the notes owned by the user

@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import home
+from users import urls as users_urls
 from notes import urls as notes_urls
 from folders import urls as folders_urls
 
@@ -25,6 +26,7 @@ urlpatterns = [
     path("", home),
     path("api/auth/", include("authentication.urls")),
     path("admin/", admin.site.urls),
+    path("", include(users_urls)),
     path("", include(notes_urls)),
     path("", include(folders_urls)),
 ]

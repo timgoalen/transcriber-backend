@@ -65,8 +65,9 @@ INSTALLED_APPS = [
     "corsheaders",
     "authentication.apps.AuthenticationConfig",
     "transcriber_api",
-    "folders",
+    "users",
     "notes",
+    "folders",
 ]
 
 # django-allauth depends on Django's 'sites' framework:

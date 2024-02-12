@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import permissions, viewsets
-from .models import Folder
-from .serializers import FolderSerializer
+from .serializers import UserSerializer
 
 
 class OwnerOrReadOnly(permissions.BasePermission):
@@ -16,16 +15,15 @@ class OwnerOrReadOnly(permissions.BasePermission):
         return False
 
 
-class FoldersViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows folders to be viewed or edited.
+    API endpoint that allows users to be viewed or edited.
     """
 
-    serializer_class = FolderSerializer
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
     permission_classes = [OwnerOrReadOnly]
-    queryset = Folder.objects.all()
 
-    # Only return folders belonging to the user
     def get_queryset(self):
         logged_in_user = self.request.user
-        return Folder.objects.filter(user=logged_in_user.id).order_by("-created_on")
+        return User.objects.filter(id=logged_in_user.id)
