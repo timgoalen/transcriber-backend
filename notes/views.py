@@ -22,9 +22,10 @@ class NotesViewSet(viewsets.ModelViewSet):
     """
 
     serializer_class = NoteSerializer
-    permission_classes = [OwnerOrReadOnly]
+    # permission_classes = [OwnerOrReadOnly]
     queryset = Note.objects.all()
 
+    # Return only the notes owned by the user
     def get_queryset(self):
         logged_in_user = self.request.user
         return Note.objects.filter(user=logged_in_user.id).order_by("-created_on")

@@ -22,9 +22,10 @@ class FoldersViewSet(viewsets.ModelViewSet):
     """
 
     serializer_class = FolderSerializer
-    permission_classes = [OwnerOrReadOnly]
+    # permission_classes = [OwnerOrReadOnly]
     queryset = Folder.objects.all()
 
+    # Only return folders belonging to the user
     def get_queryset(self):
         logged_in_user = self.request.user
         return Folder.objects.filter(user=logged_in_user.id).order_by("-created_on")

@@ -16,15 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from notes import urls as notes_urls
-# from folders import urls as folders_urls
+from .views import home
+from notes import urls as notes_urls
+from folders import urls as folders_urls
+
 
 urlpatterns = [
-    # path("", include(notes_urls)),
-    # path("", include(folders_urls)),
+    path("", home),
     path("api/auth/", include("authentication.urls")),
     path("admin/", admin.site.urls),
-    # Login/logout for browable APIs:
-    # TODO: CHECK THIS...
-    path("api-auth/", include("rest_framework.urls")),
+    path("", include(notes_urls)),
+    path("", include(folders_urls)),
 ]
