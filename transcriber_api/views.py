@@ -8,24 +8,6 @@ from .models import Note, Folder
 from .serializers import NoteSerializer, FolderSerializer, UserSerializer
 
 
-# from: https://testdriven.io/blog/drf-permissions/
-# class OwnerOrReadOnly(permissions.BasePermission):
-#     def has_permission(self, request, view):
-#         if (
-#             request.method in ["GET", "HEAD", "OPTIONS"]
-#             and request.user.is_authenticated
-#         ):
-#             return True
-#         return False
-
-#     def has_object_permission(self, request, view, obj):
-#         if request.method in permissions.SAFE_METHODS:
-#             return True
-
-#         # Allow DELETE or PATCH requests only if the logged in user is the object.user.
-#         return obj.user == request.user
-
-
 class OwnerOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.user.is_authenticated:
