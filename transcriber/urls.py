@@ -16,13 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from transcriber_api import urls as transcriber_api_urls
+from .views import home
+from users import urls as users_urls
+from notes import urls as notes_urls
+from folders import urls as folders_urls
+
 
 urlpatterns = [
-    path('', include(transcriber_api_urls)),
-    path('api/auth/', include('authentication.urls')),
-    path('admin/', admin.site.urls),
-    # Login/logout for browable APIs:
-    # TODO: CHECK THIS...
-    path('api-auth/', include('rest_framework.urls')),
+    path("", home),
+    path("api/auth/", include("authentication.urls")),
+    path("admin/", admin.site.urls),
+    path("", include(users_urls)),
+    path("", include(notes_urls)),
+    path("", include(folders_urls)),
 ]

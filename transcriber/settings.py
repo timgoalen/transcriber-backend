@@ -41,6 +41,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io",
     "https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/",
     "https://transcriber-frontend.vercel.app/",
+    "https://8000-timgoalen-transcriberba-5uy4uhx3wov.ws-eu108.gitpod.io",
 ]
 
 
@@ -63,7 +64,9 @@ INSTALLED_APPS = [
     "dj_rest_auth.registration",
     "corsheaders",
     "authentication.apps.AuthenticationConfig",
-    "transcriber_api",
+    "users",
+    "notes",
+    "folders",
 ]
 
 # django-allauth depends on Django's 'sites' framework:
