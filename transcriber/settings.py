@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEV' in os.environ
+DEBUG = True
 
 ALLOWED_HOSTS = ["*", "https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io/",
 "https://transcriber-frontend.vercel.app/"]
@@ -89,9 +89,9 @@ MIDDLEWARE = [
 # "https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io",
 # ]
 
-# if 'CLIENT_ORIGIN' in os.environ:
+# if "CLIENT_ORIGIN" in os.environ:
 #     CORS_ALLOWED_ORIGINS = [
-#         os.environ.get('CLIENT_ORIGIN')
+#         os.environ.get("CLIENT_ORIGIN")
 #     ]
 # else:
 #     CORS_ALLOWED_ORIGIN_REGEXES = [
@@ -140,6 +140,7 @@ REST_FRAMEWORK = {
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# Use this database for testing:
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.sqlite3",
@@ -147,14 +148,8 @@ REST_FRAMEWORK = {
 #     }
 # }
 
-DATABASES = {
-    'default': ({
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    } if 'DEV' in os.environ else dj_database_url.parse(
-        os.environ.get('DATABASE_URL')
-    ))
-}
+# Use this database for production:
+DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 
 # Password validation
