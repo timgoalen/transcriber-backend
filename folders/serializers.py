@@ -4,6 +4,8 @@ from .models import Folder
 
 
 class FolderSerializer(serializers.HyperlinkedModelSerializer):
+    """Serializer for the Folder model."""
+
     user = serializers.HiddenField(
         default=serializers.CurrentUserDefault(), write_only=True
     )

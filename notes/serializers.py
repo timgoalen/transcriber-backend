@@ -4,6 +4,8 @@ from .models import Note
 
 
 class NoteSerializer(serializers.HyperlinkedModelSerializer):
+    """Serializer for the Note model."""
+
     user = serializers.HiddenField(
         default=serializers.CurrentUserDefault(), write_only=True
     )

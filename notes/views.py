@@ -5,6 +5,19 @@ from .serializers import NoteSerializer
 
 
 class OwnerOrReadOnly(permissions.BasePermission):
+    """
+    Custom permission class that allows only the owner of the note
+    to modify it, while allowing authenticated users to perform read it.
+    This allows the possibility of shared notes as a future feature.
+
+    Methods:
+
+    * `has_permission(request, view)`:
+        - Returns True if the user is authenticated, or False if not.
+    * `has_object_permission(request, view, obj)`:
+        - Returns True if the user is the owner of the object, or False if not.
+    """
+
     def has_permission(self, request, view):
         if request.user.is_authenticated:
             return True
@@ -19,13 +32,17 @@ class OwnerOrReadOnly(permissions.BasePermission):
 class NotesViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows notes to be viewed or edited.
+
+    Methods:
+
+    * `get_queryset(self)`:
+        - Returns only the notes owned by the user.
     """
 
     serializer_class = NoteSerializer
     permission_classes = [OwnerOrReadOnly]
     queryset = Note.objects.all()
 
-    # Return only the notes owned by the user
     def get_queryset(self):
         logged_in_user = self.request.user
         return Note.objects.filter(user=logged_in_user.id).order_by("-created_on")

@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 
 
 class Folder(models.Model):
+    """
+    MODEL: database for Folder objects.
+    """
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="folders")
     title = models.CharField(max_length=100)
     colour = models.CharField(max_length=10)
