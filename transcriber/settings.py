@@ -20,30 +20,26 @@ if os.path.isfile("env.py"):
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*", "https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io/",
-"https://transcriber-frontend.vercel.app/"]
-
-# tg added:
-CSRF_TRUSTED_ORIGINS = [
-    "https://8000-timgoalen-transcriberba-307jf9ke75i.ws-eu106.gitpod.io",
-    "https://8000-timgoalen-transcriberba-5uy4uhx3wov.ws-eu107.gitpod.io",
-    "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io",
-    "https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io/",
+ALLOWED_HOSTS = [
+    "https://transcriber-frontend-9c6d6be53f14.herokuapp.com/",
     "https://transcriber-frontend.vercel.app/",
-    "https://8000-timgoalen-transcriberba-5uy4uhx3wov.ws-eu108.gitpod.io",
+    "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io/",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://transcriber-frontend-9c6d6be53f14.herokuapp.com/",
+    "https://transcriber-frontend.vercel.app/",
+    "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io/",
+]
 
 # Application definition
 
@@ -86,24 +82,17 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
-# CORS_ALLOWED_ORIGINS = [
-# "https://transcriber-frontend.vercel.app",
-# "https://3000-timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu107.gitpod.io",
-# ]
+# Use in development if needed
+# CORS_ALLOW_ALL_ORIGINS = True
 
-# if "CLIENT_ORIGIN" in os.environ:
-#     CORS_ALLOWED_ORIGINS = [
-#         os.environ.get("CLIENT_ORIGIN")
-#     ]
-# else:
-#     CORS_ALLOWED_ORIGIN_REGEXES = [
-#         r"^https://.*\.gitpod\.io$",
-#     ]
+CORS_ALLOWED_ORIGINS = [
+    "https://transcriber-frontend-9c6d6be53f14.herokuapp.com/",
+    "https://transcriber-frontend.vercel.app/",
+    "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io/",
+]
 
 # Allow cookies
 CORS_ALLOW_CREDENTIALS = True
-
-CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = "transcriber.urls"
 
@@ -130,14 +119,12 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
     ],
-    # TODO: change these??...
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
     ],
 }
-
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -152,7 +139,6 @@ REST_FRAMEWORK = {
 
 # Use this database for production:
 DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -171,7 +157,6 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
