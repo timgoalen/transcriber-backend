@@ -45,4 +45,5 @@ class FoldersViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         logged_in_user = self.request.user
-        return Folder.objects.filter(user=logged_in_user.id).order_by("-created_on")
+        return Folder.objects.filter(
+            user=logged_in_user.id).order_by("-created_on")

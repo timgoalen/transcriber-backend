@@ -12,4 +12,6 @@ class NoteSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Note
-        fields = ["id", "user", "text", "folder_id", "created_on", "updated_on"]
+        fields = [
+            "id", "user", "text", "folder_id", "created_on", "updated_on"
+            ]
