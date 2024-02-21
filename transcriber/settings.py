@@ -30,15 +30,15 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "https://transcriber-frontend-9c6d6be53f14.herokuapp.com/",
-    "https://transcriber-frontend.vercel.app/",
-    "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io/",
+    "https://transcriber-frontend-9c6d6be53f14.herokuapp.com",
+    "https://transcriber-frontend.vercel.app",
+    "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://transcriber-frontend-9c6d6be53f14.herokuapp.com/",
-    "https://transcriber-frontend.vercel.app/",
-    "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io/",
+    "https://transcriber-frontend-9c6d6be53f14.herokuapp.com",
+    "https://transcriber-frontend.vercel.app",
+    "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io",
 ]
 
 # Application definition
@@ -86,9 +86,9 @@ MIDDLEWARE = [
 # CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "https://transcriber-frontend-9c6d6be53f14.herokuapp.com/",
-    "https://transcriber-frontend.vercel.app/",
-    "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io/",
+    "https://transcriber-frontend-9c6d6be53f14.herokuapp.com",
+    "https://transcriber-frontend.vercel.app",
+    "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io",
 ]
 
 # Allow cookies
