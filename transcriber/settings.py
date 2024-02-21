@@ -29,17 +29,12 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    "https://transcriber-frontend-9c6d6be53f14.herokuapp.com",
-    "https://transcriber-frontend.vercel.app",
-    "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io",
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://transcriber-frontend-9c6d6be53f14.herokuapp.com",
-    "https://transcriber-frontend.vercel.app",
-    "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io",
-]
+# https://github.com/heroku/python-getting-started/blob/main/gettingstarted/settings.py
+# On Heroku, it's safe to use a wildcard for `ALLOWED_HOSTS``, since the Heroku router performs
+# validation of the Host header in the incoming HTTP request. On other platforms you may need
+# to list the expected hostnames explicitly to prevent HTTP Host header attacks. See:
+# https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-ALLOWED_HOSTS
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -85,14 +80,17 @@ MIDDLEWARE = [
 # Use in development if needed
 # CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ALLOWED_ORIGINS = [
+if "CLIENT_ORIGIN" in os.environ:
+    CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
+
+# Allow cookies
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
     "https://transcriber-frontend-9c6d6be53f14.herokuapp.com",
     "https://transcriber-frontend.vercel.app",
     "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io",
 ]
-
-# Allow cookies
-CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = "transcriber.urls"
 
