@@ -9,7 +9,7 @@ class Prompt(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE,
                              related_name="prompts")
-    text = models.TextField()
+    text = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:

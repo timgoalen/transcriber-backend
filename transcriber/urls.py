@@ -20,6 +20,7 @@ from .views import home
 from users import urls as users_urls
 from notes import urls as notes_urls
 from folders import urls as folders_urls
+from prompts import urls as prompts_urls
 
 
 urlpatterns = [
@@ -29,4 +30,5 @@ urlpatterns = [
     path("", include(users_urls)),
     path("", include(notes_urls)),
     path("", include(folders_urls)),
+    path("", include(prompts_urls)),
 ]

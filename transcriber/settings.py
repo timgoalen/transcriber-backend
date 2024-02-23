@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # https://github.com/heroku/python-getting-started/blob/main/gettingstarted/settings.py
 # On Heroku, it's safe to use a wildcard for `ALLOWED_HOSTS``, since the Heroku router performs
@@ -79,10 +79,10 @@ MIDDLEWARE = [
 ]
 
 # Use in development if needed
-# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = True
 
-if "CLIENT_ORIGIN" in os.environ:
-    CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
+# if "CLIENT_ORIGIN" in os.environ:
+#     CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
 
 # Allow cookies
 CORS_ALLOW_CREDENTIALS = True
@@ -91,6 +91,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://transcriber-frontend-9c6d6be53f14.herokuapp.com",
     "https://transcriber-frontend.vercel.app",
     "https://timgoalen-transcriberfr-h1tyvl9vsqe.ws-eu108.gitpod.io",
+    "https://8000-timgoalen-transcriberba-5uy4uhx3wov.ws-eu108.gitpod.io", #ADDED, REMOVE!!!
 ]
 
 ROOT_URLCONF = "transcriber.urls"
