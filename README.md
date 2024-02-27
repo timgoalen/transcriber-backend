@@ -23,7 +23,7 @@ A Kanban board in Github projects was used for the Agile development process - s
 
 ## Data Schema
 
-![schema-diagram.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/33f04f58-812e-4e22-bc6e-bb8c57dcb182/c4e90f7a-55c1-4d26-b530-92798080fff1/schema-diagram.png)
+![schema-diagram.png](staticfiles/readme_images/schema-diagram.png)
 
 ## Features to Implement in the Future
 
