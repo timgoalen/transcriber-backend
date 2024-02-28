@@ -1,3 +1,5 @@
+# Transcriber - backend
+
 This is the backend API for the frontend application **Transcriber**.
 
 - View the live frontend site [here](https://transcriber-frontend-9c6d6be53f14.herokuapp.com/).
@@ -27,7 +29,7 @@ A Kanban board in Github projects was used for the Agile development process - s
 
 ## Features to Implement in the Future
 
-- Save notes.text as an encrypted field, using a 3rd party library like Django Encrypted Model Fields, so the notes are unreadable in the Django admin dashboard.
+- Save `notes.text` as an encrypted field, using a 3rd party library like Django Encrypted Model Fields, so users' notes are unreadable in the Django admin dashboard.
 
 ## Technologies Used
 
@@ -236,8 +238,6 @@ You will also need to add the database to your Django [settings.py](http://seeti
 
 `}`
 
----
-
 ### Deploy to Heroku
 
 1. Create a [Heroku](https://www.heroku.com/) account.
@@ -253,8 +253,6 @@ You will also need to add the database to your Django [settings.py](http://seeti
 8. In the 'Deploy' tab, select GitHub as the deployment method, and click 'Connect to GitHub'.
 9. In the 'App Connected to GitHub' section, search for the GitHub repository name, select it then click 'connect'.
 10. Finally, either click ‘Enable Automatic Deploys’, or ‘Deploy Branch’ in the ‘Manual deploy’ section.
-
----
 
 ## Credits
 
