@@ -2,14 +2,11 @@
 
 This is the backend API for the frontend application **Transcriber**.
 
-- View the live frontend site [here](https://transcriber-frontend-9c6d6be53f14.herokuapp.com/).
 - View the frontend repo [here](https://github.com/timgoalen/transcriber-frontend).
 
 ## About
 
 **Transcriber - backend** is a REST API built with the Django REST Framework.
-
-View the API [here](https://transcriber-backend-api-22aee3c5fb11.herokuapp.com/).
 
 ### Project Goals
 
